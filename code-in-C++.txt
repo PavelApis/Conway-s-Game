@@ -70,8 +70,11 @@ void inputStartingCells() {
 			}
 			else if (answer == 'y' || answer == 'n') break;
 		}
-		if (answer == 'n') break;
-		system("CLS");
+		if (answer == 'n') {
+			system("CLS");
+			break;
+		}
+		
 	}
 }
 
