@@ -3,14 +3,14 @@
 using namespace std;
 
 //константы задающие размеры поля
-const unsigned int WIDTH = 17;       
+const unsigned int WIDTH = 17;
 const unsigned int HEIGHT = 17;
 
-char field[HEIGHT][WIDTH]{}; //массив символов соответствующий полю
+char field[HEIGHT][WIDTH]{}; // массив символов соответствующий полю
 
 //функция, очищающая массив поля и записывающая символ @ в граничные элементы поля. Все клетки будут жить в элементах массива от 1 до HEIGHT/WIDTH - 2
-void createEmptyField() {                                         
-	for (int y = 0; y < HEIGHT; ++y) {                     
+void createEmptyField() {
+	for (int y = 0; y < HEIGHT; ++y) {
 		for (int x = 0; x < WIDTH; ++x) {
 			if (x == 0 || x == WIDTH - 1 || y == 0 || y == HEIGHT - 1)
 				field[y][x] = '@';
@@ -20,16 +20,28 @@ void createEmptyField() {
 }
 
 //Функция принимающая числа x и y в качестве координаты и создающая клетки, соответсвутющие координатам поля, клеткам присуждается символ '0'.
-void createCell(int x, int y) {                                              
+void createCell(int x, int y) {
 	if (x > 0 && x < WIDTH - 1 && HEIGHT - 1 - y > 0 && HEIGHT - 1 - y < HEIGHT)
 		field[HEIGHT - 1 - y][x] = '0';
 	else cout << "Wrong coordinates\n";
+}
+
+//Вывод поля на экран
+void print() {
+	for (int y = 0; y < HEIGHT; ++y) {
+		for (int x = 0; x < WIDTH; ++x) {
+			cout << field[y][x];
+			if (x == WIDTH - 1)
+				cout << '\n';
+		}
+	}
 }
 
 //Функция вводящая все клетки, которые будут жить в поел после старта игры
 void inputStartingCells() {
 	int x, y;
 	while (cin) {
+		print();
 		cout << "Enter the coordinates of cells (x, y) x from 1 to " << WIDTH - 2 << " y from 1 to " << HEIGHT - 2 << ".\n";
 
 		while (true) {
@@ -60,17 +72,6 @@ void inputStartingCells() {
 		}
 		if (answer == 'n') break;
 		system("CLS");
-	}
-}
-
-//Вывод поля на экран
-void print() {
-	for (int y = 0; y < HEIGHT; ++y) {
-		for (int x = 0; x < WIDTH; ++x) {
-			cout << field[y][x];
-			if (x == WIDTH - 1)
-				cout << '\n';
-		}
 	}
 }
 
