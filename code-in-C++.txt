@@ -70,11 +70,8 @@ void inputStartingCells() {
 			}
 			else if (answer == 'y' || answer == 'n') break;
 		}
-		if (answer == 'n') {
-			system("CLS");
-			break;
-		}
-
+		system("CLS");
+		if (answer == 'n') break;
 	}
 }
 
@@ -147,10 +144,10 @@ void generation() {
 	}
 }
 
-//Контроль перехода к следующему поколению, для этого требуется ввести 'n', а также выхода из игры, для этого требуется ввести 'e'
+//Контроль перехода к следующему поколению, для этого требуется ввести 'n', для перезапуска игры требуется ввести 'r', также выхода из игры, для этого требуется ввести 'e'
 bool control() {
 	char stick;
-	cout << "Enter a \"n\" for next generation;\nEnter a \"e\" for close the simulation;\n ";
+	cout << "Enter a \"n\" for next generation;\nEnter a \"r\" for restart the programm;\nEnter a \"e\" for close the programm;\n ";
 
 	while (true) {
 		cin >> stick;
@@ -159,13 +156,19 @@ bool control() {
 			std::cin.clear();
 			std::cin.ignore(32767, '\n');
 		}
-		else if (stick == 'n' || stick == 'e') {
+		else if (stick == 'n' || stick == 'e' || stick == 'r') {
 			break;
 			cin.clear();
 		}
 	}
 
 	if (stick == 'n') return 1;
+	else if (stick == 'r') {
+		system("CLS");
+		createEmptyField();
+		inputStartingCells();
+		return 1;
+	}
 	else if (stick == 'e') return 0;
 }
 
