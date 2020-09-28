@@ -56,7 +56,11 @@ void inputStartingCells() {
 				break;
 			}
 
-			else cout << "Wrong number, try again!\n";
+			else {
+				cout << "Wrong number, try again!\n";
+				std::cin.clear();
+				std::cin.ignore(32767, '\n');
+			}
 		}
 
 		cout << "Do you want to create a new cell? y/n\n";
@@ -69,6 +73,11 @@ void inputStartingCells() {
 				std::cin.ignore(32767, '\n');
 			}
 			else if (answer == 'y' || answer == 'n') break;
+			else {
+				cout << "Wrong value, try again!\n";
+				std::cin.clear();
+				std::cin.ignore(32767, '\n');
+			}
 		}
 		system("CLS");
 		if (answer == 'n') break;
@@ -159,6 +168,12 @@ bool control() {
 		else if (stick == 'n' || stick == 'e' || stick == 'r') {
 			break;
 			cin.clear();
+		
+		}
+		else {
+			cout << "Wrong value, try again!\n";
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
 		}
 	}
 
